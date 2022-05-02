@@ -14,18 +14,18 @@ try{
     $gender = $_GET['radio-gender'];
     $konech = $_GET['radio-konech'];
     $bio = $_GET['biography'];
-    
+    $sup = implode(",",$_GET['superpower']);
     if (empty($name)) {
         $nameErr = "Введите имя";
         $errors = TRUE;
     }
     else 
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+        if (!preg_match("/^[a-яA-Я ]*$/",$name)) {
             $nameErr = "Некорректно введено имя"; 
             $errors = TRUE;
         }
         else{
-            setcookie('name',$name,time()+365*24*60*60);
+            //setcookie('name',$name,time()+365*24*60*60);
         }
     if (empty($email)) {
         $emailErr = "Введите Email";
@@ -37,7 +37,7 @@ try{
             $errors = TRUE;
         }
         else{
-            setcookie('email',$email,time()+365*24*60*60);
+            //setcookie('email',$email,time()+365*24*60*60);
         }
 
     if (empty($bio)) {
@@ -45,15 +45,22 @@ try{
         $errors = TRUE;
     }
     else{
-        setcookie('bio',$bio,time()+365*24*60*60);
+        //setcookie('bio',$bio,time()+365*24*60*60);
     }
     if (empty($_GET['chick'])) {
         $chickErr = "Чтобы продолжить, нужно согласиться с условиями";
         $errors = TRUE;
     }
-    
+
+    setcookie('email',$email,time()+365*24*60*60);
+    setcookie('name',$name,time()+365*24*60*60);
+    setcookie('data',$data,time()+365*24*60*60);
+    setcookie('bio',$bio,time()+365*24*60*60);
+    setcookie('konech',$konech,time()+365*24*60*60);
+    setcookie('sup',$sup,time()+365*24*60*60);
+
     if (!$errors) {
-        $sup= implode(",",$_GET['superpower']);
+        //$sup= implode(",",$_GET['superpower']);
         $chebox = $_GET['chick'];
 
         $conn = new PDO("mysql:host=localhost;dbname=u41810", 'u41810', '3516685', array(PDO::ATTR_PERSISTENT => true));

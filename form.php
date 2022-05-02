@@ -49,16 +49,28 @@
                 </div>
 
                 <label>Дата рождения:</label>
-                <input class="form-control" name="field-date" value="2012-12-12" type="date" required />
-                
+                <input class="form-control" name="field-date" <?php
+                                                                if (isset($_COOKIE['data'])) {
+                                                                    echo 'value="' . $_COOKIE['data'] . '"';
+                                                                } else {
+                                                                    echo 'value="2002-08-06"';
+                                                                }
+                                                                ?> type="date" required />
+
                 <label>Пол:</label>
                 <br />
                 <div class="custom-control custom-radio form-check-inline">
-                    <input type="radio" checked="checked" id="genderRadio1" name="radio-gender" value=1 class="custom-control-input" />
+                    <input type="radio"  id="genderRadio1" name="radio-gender" value=1 class="custom-control-input" <?php
+                                                                                                                    if ($_COOKIE['konech']==1) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?>/>
                     <label class="custom-control-label" for="genderRadio1">Мужской</label>
                 </div>
                 <div class="custom-control custom-radio form-check-inline">
-                    <input type="radio" id="genderRadio2" name="radio-gender" value=0 class="custom-control-input" />
+                    <input type="radio" id="genderRadio2" name="radio-gender" value=0 class="custom-control-input" <?php
+                                                                                                                    if ($_COOKIE['konech']==0) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?>/>
                     <label class="custom-control-label" for="genderRadio1">Женский</label>
                 </div>
                 <br />
@@ -66,23 +78,38 @@
                 <label>Кол-во конечностей:</label>
                 <br />
                 <div class="custom-control custom-radio form-check-inline">
-                    <input type="radio" checked="checked" id="konechRadio0" name="radio-konech" value=0 class="custom-control-input" />
+                    <input type="radio" id="konechRadio0" name="radio-konech" value=0 class="custom-control-input" <?php
+                                                                                                                    if ($_COOKIE['konech']==0) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?> />
                     <label class="custom-control-label" for="konechRadio0">0</label>
                 </div>
                 <div class="custom-control custom-radio form-check-inline">
-                    <input type="radio" checked="checked" id="konechRadio1" name="radio-konech" value=1 class="custom-control-input" />
+                    <input type="radio" id="konechRadio1" name="radio-konech" value=1 class="custom-control-input" <?php
+                                                                                                                    if ($_COOKIE['konech']==1) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?>/>
                     <label class="custom-control-label" for="konechRadio1">1</label>
                 </div>
                 <div class="custom-control custom-radio form-check-inline">
-                    <input type="radio" checked="checked" id="konechRadio2" name="radio-konech" value=2 class="custom-control-input" />
+                    <input type="radio" id="konechRadio2" name="radio-konech" value=2 class="custom-control-input" <?php
+                                                                                                                    if ($_COOKIE['konech']==2) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?> />
                     <label class="custom-control-label" for="konechRadio2">2</label>
                 </div>
                 <div class="custom-control custom-radio form-check-inline">
-                    <input type="radio" checked="checked" id="konechRadio3" name="radio-konech" value=3 class="custom-control-input" />
+                    <input type="radio" id="konechRadio3" name="radio-konech" value=3 class="custom-control-input" <?php
+                                                                                                                    if ($_COOKIE['konech']==3) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?>/>
                     <label class="custom-control-label" for="konechRadio3">3</label>
                 </div>
                 <div class="custom-control custom-radio form-check-inline">
-                    <input type="radio" checked="checked" id="konechRadio4" name="radio-konech" value=4 class="custom-control-input" />
+                    <input type="radio" id="konechRadio4" name="radio-konech" value=4 class="custom-control-input" <?php
+                                                                                                                    if ($_COOKIE['konech']==4) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?>/>
                     <label class="custom-control-label" for="konechRadio4">4</label>
                 </div>
                 <br />
@@ -90,7 +117,7 @@
                 <label>Ваши сверхспособности:</label>
                 <br />
                 <select class="custom-select" name="superpower[]" required>
-                    <option value="Бессмертие">Бессмертие</option>
+                    <option value="Бессмертие" >Бессмертие</option>
                     <option value="Прохождение сквозь стены">Прохождение сквозь стены</option>
                     <option value="Левитация">Левитация</option>
                 </select>
@@ -99,11 +126,14 @@
                 <label>Биография:</label>
                 <br />
                 <div class="w-100">
-                <textarea name="biography" <?php if (!empty($bioErr)) {
-                                                echo 'class="placeholder col-12 bg-danger text-light is-invalid"';
-                                            } else {
-                                                echo 'class="is-valid"';
-                                            } ?>></textarea></div>
+                    <textarea name="biography" <?php if (!empty($bioErr)) {
+                                                    echo 'class="placeholder col-12 bg-danger text-light is-invalid"';
+                                                } ?>><?php
+                                                        if (isset($_COOKIE['bio'])) {
+                                                            echo $_COOKIE['bio'];
+                                                        } ?>
+                                            </textarea>
+                </div>
 
                 <?php
                 if (!empty($bioErr)) {
@@ -113,9 +143,13 @@
                 <br />
 
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input <?php if(!empty($chickErr)) { echo 'is-invalid';} else { echo 'is-valid'; }?>" name="chick" id="customCheck1" checked=checked value=1 <?php if (!empty($chickErr)) {
-                                                                                                                                    echo 'class="text-danger"';
-                                                                                                                                } ?>>
+                    <input type="checkbox" class="custom-control-input <?php if (!empty($chickErr)) {
+                                                                            echo 'is-invalid';
+                                                                        } else {
+                                                                            echo 'is-valid';
+                                                                        } ?>" name="chick" id="customCheck1" checked=checked value=1 <?php if (!empty($chickErr)) {
+                                                                                                                                            echo 'class="text-danger"';
+                                                                                                                                        } ?>>
                     <label class="custom-control-label" for="customCheck1">Ознакомлен с контрактом</label>
                 </div>
 
