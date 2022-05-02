@@ -55,12 +55,13 @@ try{
     setcookie('email',$email,time()+365*24*60*60);
     setcookie('name',$name,time()+365*24*60*60);
     setcookie('data',$data,time()+365*24*60*60);
+    setcookie('gender',$gender,time()+365*24*60*60);
     setcookie('bio',$bio,time()+365*24*60*60);
     setcookie('konech',$konech,time()+365*24*60*60);
-    setcookie('sup',$sup,time()+365*24*60*60);
+    
 
     if (!$errors) {
-        //$sup= implode(",",$_GET['superpower']);
+        $sup= implode(",",$_GET['superpower']);
         $chebox = $_GET['chick'];
 
         $conn = new PDO("mysql:host=localhost;dbname=u41810", 'u41810', '3516685', array(PDO::ATTR_PERSISTENT => true));
