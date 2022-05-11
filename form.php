@@ -61,14 +61,14 @@
                 <br />
                 <div class="custom-control custom-radio form-check-inline">
                     <input type="radio" id="genderRadio1" name="radio-gender" value=0 class="custom-control-input" <?php
-                                                                                                                    if ($_COOKIE['gender'] == 0) {
+                                                                                                                    if (isset($_COOKIE['gender']) == 0) {
                                                                                                                         echo 'checked';
                                                                                                                     } ?> />
                     <label class="custom-control-label" for="genderRadio1"> Мужской </label>
                 </div>
                 <div class="custom-control custom-radio form-check-inline">
                     <input type="radio" id="genderRadio2" name="radio-gender" value=1 class="custom-control-input" <?php
-                                                                                                                    if ($_COOKIE['gender'] == 1) {
+                                                                                                                    if (isset($_COOKIE['gender']) == 1) {
                                                                                                                         echo 'checked';
                                                                                                                     } ?> />
                     <label class="custom-control-label" for="genderRadio1"> Женский </label>
@@ -79,44 +79,45 @@
                 <br />
                 <div class="custom-control custom-radio form-check-inline">
                     <input type="radio" id="konechRadio0" name="radio-konech" value=0 class="custom-control-input" <?php
-                                                                                                                    if ($_COOKIE['konech'] == 0) {
+                                                                                                                    if (isset($_COOKIE['konech']) == 0) {
                                                                                                                         echo 'checked';
                                                                                                                     } ?> />
                     <label class="custom-control-label" for="konechRadio0">0</label>
                 </div>
                 <div class="custom-control custom-radio form-check-inline">
                     <input type="radio" id="konechRadio1" name="radio-konech" value=1 class="custom-control-input" <?php
-                                                                                                                    if ($_COOKIE['konech'] == 1) {
+                                                                                                                    if (isset($_COOKIE['konech']) == 1) {
                                                                                                                         echo 'checked';
                                                                                                                     } ?> />
                     <label class="custom-control-label" for="konechRadio1">1</label>
                 </div>
                 <div class="custom-control custom-radio form-check-inline">
                     <input type="radio" id="konechRadio2" name="radio-konech" value=2 class="custom-control-input" <?php
-                                                                                                                    if ($_COOKIE['konech'] == 2) {
+                                                                                                                    if (isset($_COOKIE['konech']) == 2) {
                                                                                                                         echo 'checked';
                                                                                                                     } ?> />
                     <label class="custom-control-label" for="konechRadio2">2</label>
                 </div>
                 <div class="custom-control custom-radio form-check-inline">
                     <input type="radio" id="konechRadio3" name="radio-konech" value=3 class="custom-control-input" <?php
-                                                                                                                    if ($_COOKIE['konech'] == 3) {
+                                                                                                                    if (isset($_COOKIE['konech']) == 3) {
                                                                                                                         echo 'checked';
                                                                                                                     } ?> />
                     <label class="custom-control-label" for="konechRadio3">3</label>
                 </div>
                 <div class="custom-control custom-radio form-check-inline">
                     <input type="radio" id="konechRadio4" name="radio-konech" value=4 class="custom-control-input" <?php
-                                                                                                                    if ($_COOKIE['konech'] == 4) {
+                                                                                                                    if (isset($_COOKIE['konech']) == 4) {
                                                                                                                         echo 'checked';
                                                                                                                     } ?> />
                     <label class="custom-control-label" for="konechRadio4">4</label>
                 </div>
                 <br />
 
+
                 <label>Ваши сверхспособности:</label>
                 <br />
-                <select class="custom-select" name="superpower[]" required>
+                <select multiple="true" name="superpower[]" required>
                     <option value="Бессмертие">Бессмертие</option>
                     <option value="Прохождение сквозь стены">Прохождение сквозь стены</option>
                     <option value="Левитация">Левитация</option>
